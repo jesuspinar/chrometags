@@ -1,0 +1,62 @@
+:root {
+	--circle-size: 200px;
+	--scanner-diff: 40px;
+	--scanner-size: calc(var(--circle-size) - var(--scanner-diff));
+}
+
+.outer-circle {
+	width: var(--circle-size);
+	height: var(--circle-size);
+	border-radius: 50%;
+	box-shadow: 0 0 8px #aaaaaa5c;
+	position: relative;
+}
+
+.scanner {
+	width: var(--scanner-size);
+	height: var(--scanner-size);
+	border-radius: 50%;
+	position: absolute;
+	top: calc(var(--scanner-diff) / 2);
+	left: calc(var(--scanner-diff) / 2);
+	background: conic-gradient(#347de155, #347de1);
+	/* La animación solo se aplica cuando la clase 'active' está presente */
+	animation: none;
+}
+
+.outer-circle::before,
+.outer-circle::after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	border-radius: inherit;
+	position: absolute;
+	border: 1px solid #eee;
+	animation: none; /* La animación se desactiva por defecto */
+}
+
+.outer-circle.active .scanner {
+	animation: scan 4s linear infinite;
+}
+
+.outer-circle.active::before,
+.outer-circle.active::after {
+	animation: ripple 3s linear infinite;
+}
+
+.outer-circle.active::after {
+	animation-delay: 1s;
+}
+
+@keyframes scan {
+	to {
+		transform: rotate(1turn);
+	}
+}
+
+@keyframes ripple {
+	to {
+		transform: scale(2.5);
+		opacity: 0;
+	}
+}
