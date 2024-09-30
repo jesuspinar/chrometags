@@ -18,11 +18,19 @@ fi
 # Switch to the gh-pages branch or create it if it doesn't exist
 git checkout gh-pages || git checkout -b gh-pages
 
+# Verify that the checkout was successful
+NEW_BRANCH=$(git branch --show-current)
+if [ "$NEW_BRANCH" != "gh-pages" ]; then
+    echo "Error: Failed to switch to the gh-pages branch"
+    exit 1
+fi
+
 # Delete all files except node_modules, .git, .gitignore, and dist
-# Note: Ensure that "dist" only contains temporary files
+echo "Deleting files on gh-pages branch..."
 rm -rf !(node_modules|.git|.gitignore|dist)
 
 # Copy the files from dist to the root directory
+echo "Copying files from dist..."
 cp -r dist/* .
 
 # Delete the dist folder as it is no longer needed
