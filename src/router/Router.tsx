@@ -15,78 +15,82 @@ import DetailTagScreen from "../views/DetailTagScreen";
 import HistoryScreen from "../views/HistoryScreen";
 import SettingsScreen from "../views/SettingsScreen";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+	[
+		{
+			path: "/",
+			element: <Layout />,
+			children: [
+				{
+					index: true,
+					element: <Navigate to={routes.HOME} replace />,
+				},
+				{
+					path: routes.HOME,
+					element: <HomeScreen />,
+				},
+				{
+					path: routes.HOME_DETAIL_TAG,
+					element: <DetailTagScreen />,
+				},
+				{
+					path: routes.SCAN,
+					element: <ScanScreen />,
+				},
+				{
+					path: routes.SCAN_DETAIL_TAG,
+					element: <DetailTagScreen />,
+				},
+				{
+					path: routes.CREATE,
+					element: <CreateTagScreen />,
+				},
+				{
+					path: routes.CREATE_NOTE,
+					element: <CreateNoteScreen />,
+				},
+				{
+					path: routes.CREATE_LINK,
+					element: <CreateLinkScreen />,
+				},
+				{
+					path: routes.CREATE_SOCIAL,
+					element: <CreateSocialScreen />,
+				},
+				{
+					path: routes.CREATE_SEARCH,
+					element: <CreateSearchScreen />,
+				},
+				{
+					path: routes.CREATE_CONTACT,
+					element: <CreateContactScreen />,
+				},
+				{
+					path: routes.CREATE_LOCATION,
+					element: <CreateLocationScreen />,
+				},
+				{
+					path: routes.CREATE_WIFI,
+					element: <CreateWifiScreen />,
+				},
+				{
+					path: routes.HISTORY,
+					element: <HistoryScreen />,
+				},
+				{
+					path: routes.HISTORY_DETAIL_TAG,
+					element: <DetailTagScreen />,
+				},
+				{
+					path: routes.SETTINGS,
+					element: <SettingsScreen />,
+				},
+			],
+		},
+	],
 	{
-		path: "/",
-		element: <Layout />,
-		children: [
-			{
-				index: true,
-				element: <Navigate to={routes.HOME} replace />,
-			},
-			{
-				path: routes.HOME,
-				element: <HomeScreen />,
-			},
-			{
-				path: routes.HOME_DETAIL_TAG,
-				element: <DetailTagScreen />,
-			},
-			{
-				path: routes.SCAN,
-				element: <ScanScreen />,
-			},
-			{
-				path: routes.SCAN_DETAIL_TAG,
-				element: <DetailTagScreen />,
-			},
-			{
-				path: routes.CREATE,
-				element: <CreateTagScreen />,
-			},
-			{
-				path: routes.CREATE_NOTE,
-				element: <CreateNoteScreen />,
-			},
-			{
-				path: routes.CREATE_LINK,
-				element: <CreateLinkScreen />,
-			},
-			{
-				path: routes.CREATE_SOCIAL,
-				element: <CreateSocialScreen />,
-			},
-			{
-				path: routes.CREATE_SEARCH,
-				element: <CreateSearchScreen />,
-			},
-			{
-				path: routes.CREATE_CONTACT,
-				element: <CreateContactScreen />,
-			},
-			{
-				path: routes.CREATE_LOCATION,
-				element: <CreateLocationScreen />,
-			},
-			{
-				path: routes.CREATE_WIFI,
-				element: <CreateWifiScreen />,
-			},
-
-			{
-				path: routes.HISTORY,
-				element: <HistoryScreen />,
-			},
-			{
-				path: routes.HISTORY_DETAIL_TAG,
-				element: <DetailTagScreen />,
-			},
-			{
-				path: routes.SETTINGS,
-				element: <SettingsScreen />,
-			},
-		],
-	},
-]);
+		basename: "/chrometags",
+	}
+);
 
 export default router;
