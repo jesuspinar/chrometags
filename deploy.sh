@@ -19,6 +19,7 @@ fi
 git checkout gh-pages || git checkout -b gh-pages
 
 # Delete all files except node_modules, .git, .gitignore, and dist
+# Note: Ensure that "dist" only contains temporary files
 rm -rf !(node_modules|.git|.gitignore|dist)
 
 # Copy the files from dist to the root directory
@@ -30,11 +31,16 @@ rm -rf dist
 # Add all files to the commit
 git add .
 
-# Commit with a deployment message
-git commit -m "Updated deploy"
+# Check if there are changes before committing
+if ! git diff-index --quiet HEAD --; then
+    # Commit with a deployment message
+    git commit -m "Updated deploy"
 
-# Push to the gh-pages branch
-git push origin gh-pages
+    # Push to the gh-pages branch
+    git push origin gh-pages
+else
+    echo "No changes to deploy"
+fi
 
 # Show confirmation message
 echo "Published"
