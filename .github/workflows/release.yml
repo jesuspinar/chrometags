@@ -1,4 +1,4 @@
-name: Deploy Kaplay project to Pages
+name: Deploy project to Pages
 
 on:
   # Runs on pushes targeting the default branch
